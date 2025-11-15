@@ -15,92 +15,110 @@ export default function RandomEvent(props) {
             id: 2,
             title: "Popstar Fans",
             description: "A well-known popstar is visiting from another country and EVERYONE heard aobu",
+            afterwards: "turns out, it was a false alarm. People from CrazyVille just decided to dress up as zombies for Halloween."
         },
         {
             id: 3,
             type: "Opportunity",
             title: "Technological Breakthrough",
             description: "Your scientists have successfully harnessed fusion power!",
+            afterwards: "turns out, it was a false alarm. People from CrazyVille just decided to dress up as zombies for Halloween."
         },
         {
             id: 4,
             type: "Crisis",
             title: "Plague Outbreak",
             description: "A mysterious and fast-spreading illness is sweeping through the populace.",
+            afterwards: "turns out, it was a false alarm. People from CrazyVille just decided to dress up as zombies for Halloween."
         },
         {
             id: 5,
             type: "Economic",
             title: "Gold Rush Discovered",
             description: "A massive, easily accessible mineral deposit has been found in the northern territories.",
+            afterwards: "turns out, it was a false alarm. People from CrazyVille just decided to dress up as zombies for Halloween."
         },
         {
             id: 6,
             type: "Opportunity",
             title: "New Planet Discovered",
-            description: "A mysterious planet is discovered and scientists found out there is an abundance of resources."
+            description: "A mysterious planet is discovered and scientists found out there is an abundance of resources.",
+            afterwards: "turns out, it was a false alarm. People from CrazyVille just decided to dress up as zombies for Halloween."
         },
         {
             id: 7,
             type: "Crisis",
             title: "Zombie Invasion",
-            description: "Armies of zombies are attacking random parts of the world."
+            description: "Armies of zombies are attacking random parts of the world.",
+            afterwards: "turns out, it was a false alarm. People from CrazyVille just decided to dress up as zombies for Halloween."
         },
         {
             id: 8,
             type: "Crisis",
             title: "War",
-            description: "A war has broken out and posed a great risk to human lives."
+            description: "A war has broken out and posed a great risk to human lives.",
+            afterwards: "turns out, it was a false alarm. People from CrazyVille just decided to dress up as zombies for Halloween."
         },
         {
             id: 9,
             type: "Economic",
             title: "Stock Market Boom",
-            description: "Global certainty has caused massive surge in the markets."
+            description: "Global certainty has caused massive surge in the markets.",
+            afterwards: "turns out, it was a false alarm. People from CrazyVille just decided to dress up as zombies for Halloween."
         },
         {
             id: 10,
             type: "Crisis",
             title: "Housing Crisis",
-            description: "All housing around the world has dropped in price and the economy is at risk."
+            description: "All housing around the world has dropped in price and the economy is at risk.",
+            afterwards: "turns out, it was a false alarm. People from CrazyVille just decided to dress up as zombies for Halloween."
         },
         {
             id: 11,
             type: "Opportunity",
             title: "Global Baby Boom",
-            description: "A huge surge in birth rates leads to greater demands in the markets."
+            description: "A huge surge in birth rates leads to greater demands in the markets.",
+            afterwards: "turns out, it was a false alarm. People from CrazyVille just decided to dress up as zombies for Halloween."
         },
         {
             id: 12,
             type: "Crisis",
             title: "Thanos arrived",
-            description: "Thanos has come to hunt for a mysterious stone, leading the world into chaos."
+            description: "Thanos has come to hunt for a mysterious stone, leading the world into chaos.",
+            afterwards: "turns out, it was a false alarm. People from CrazyVille just decided to dress up as zombies for Halloween."
         },
         {
             id: 13,
             type: "Opportunity",
             title: "Alienware Technology landed",
-            description: "A huge supply of alienware technology has randomly landed around the world."
+            description: "A huge supply of alienware technology has randomly landed around the world.",
+            afterwards: "turns out, it was a false alarm. People from CrazyVille just decided to dress up as zombies for Halloween."
         },
         {
             id: 14,
             type: "Economic",
             title: "Medical Breakthrough",
-            description: "Advances in medicine lead to a breakthrough that is revolutionary around the world."
+            description: "Advances in medicine lead to a breakthrough that is revolutionary around the world.",
+            afterwards: "turns out, it was a false alarm. People from CrazyVille just decided to dress up as zombies for Halloween."
         },
         {
             id: 15,
             type: "Crisis",
             title: "Robot invasion",
-            description: "Robot are invading this world and attempt to take over humanity."
+            description: "Robot are invading this world and attempt to take over humanity.",
+            afterwards: "turns out, it was a false alarm. People from CrazyVille just decided to dress up as zombies for Halloween."
         },   
     ];
 
     const [currentEvent, setCurrentEvent] = useState(null);
     const [count, setCount] = useState(0);
+    const [afterwards, setAfterwards] = useState("");
 
     // Function to select a random event from the array
     const generateRandomEvent = () => {
+        if(currentEvent!=null){
+            setAfterwards(currentEvent.afterwards);
+        }
         const randomIndex = Math.floor(Math.random() * eventPrompts.length);
         const newEvent = eventPrompts[randomIndex];
         
@@ -125,6 +143,8 @@ export default function RandomEvent(props) {
                 <div>
                     <h3 style={{ marginTop: '0', color: currentEvent.type === 'Crisis' ? 'red' : currentEvent.type === 'Opportunity' ? 'green' : 'blue' }}>
                         <div>
+                            <div>{afterwards}</div>
+                            <br/>
                             {currentEvent.title}
                             <p>
                                 {currentEvent.description}
