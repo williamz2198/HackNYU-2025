@@ -5,7 +5,7 @@ export default function StockChartList(props){
         <>
             <StockChart data = {data} name={"Your stocks"}></StockChart>
             {props.stocks.map(stock => (
-                <StockChart key={stock.ticker} data={stock.history} name={stock.name}>
+                <StockChart key={stock.category} data={stock.history} name={stock.name}>
                 </StockChart>
             ))}
         </>

@@ -3,8 +3,8 @@ export default function StockList(props){
     <>
         <div className="Section">
             {props.stocks.map(stock => (
-                <div key={stock.ticker}>
-                    <h2>{stock.name} ({stock.ticker})</h2>
+                <div key={stock.category}>
+                    <h2>{stock.name} ({stock.category})</h2>
                     <p>Price: ${stock.currentPrice.toFixed(2)}</p>
                 </div>
             ))}
