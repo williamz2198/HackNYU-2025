@@ -3,43 +3,40 @@ import './App.css'
 import { simulatePrice } from './utils/simulatePrice'
 import RandomEvent from './components/RandomEvent'
 import MoneyDisplay from './components/MoneyDisplay'
+import StockChartList from './components/StockChartList'
 import StockList from './components/StockList'
 
 function App() {
   const [money,setMoney] = useState(10000);
   const [stocks, setStocks] = useState([
-    { ticker: "AAPL", name: "Apple Inc.", currentPrice: 150, trend: 0.0002, volatility: 0.02, history: [150] },
-    { ticker: "TSLA", name: "Tesla Inc.", currentPrice: 700, trend: 0.0003, volatility: 0.03, history: [700] },
+    {ticker: "AAPL", name: "Apple Inc.", currentPrice: 150, trend: 0.0002, volatility: 0.02, history: [150] },
+    {ticker: "TSLA", name: "Tesla Inc.", currentPrice: 700, trend: 0.0003, volatility: 0.03, history: [700] },
   ])
-  useEffect(() => {
-  const interval = setInterval(() => {
+  const updateStocks = () =>{
     setStocks(prev => {
       return prev.map(stock => {
-        const newPrice = simulatePrice(stock.currentPrice, stock.trend, stock.volatility);
-        return {
-          ...stock,
-          currentPrice: newPrice,
-          history: [...stock.history, newPrice]
-        };
+          const newPrice = simulatePrice(stock.currentPrice, stock.trend, stock.volatility);
+            return {
+            ...stock,
+            currentPrice: newPrice,
+            history: [...stock.history, newPrice]
+          };
       });
     });
-  }, 1000);
-
-  return () => clearInterval(interval);
-}, []);
+  }
 
   return (
     <>
       
       <MoneyDisplay money = {money}></MoneyDisplay>
-        <button onClick={() => setMoney((money) => money + 1)}>
-          money is {money}
-        </button>
-      <div>
-        <h1>Stock Simulator</h1>
-        <StockList stocks={stocks} />
+      <StockChartList stocks = {stocks}></StockChartList>
+      <div className="ContentBlock">
+        <StockList stocks = {stocks}></StockList>
+        <RandomEvent onCall={updateStocks}></RandomEvent>
       </div>
-      <RandomEvent></RandomEvent>
+      <button onClick={() => setMoney((money) => money + 1)}>
+        money is {money}
+      </button>  
     </>
   )
 }

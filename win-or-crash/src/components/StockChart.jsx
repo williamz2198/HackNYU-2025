@@ -20,21 +20,26 @@ ChartJS.register(
   Legend
 );
 
-const labels = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
-
-const data = {
-  labels,
-  datasets: [
-    {
-      label: 'Stock 1',
-      data: labels.map(() => Math.random()),
-      borderColor: 'rgba(255, 255, 255, 1)',
-      backgroundColor: 'rgba(255, 255, 255, 1)',
-    },
-  ],
-};
-
 export default function StockChart(props){
+    const generateLabels = () =>{
+        let res = [];
+        for(let i = 1; i < 25; i++){
+            res.push("Day " + i);
+        }
+        return res;
+    };
+    const labels = generateLabels();
+    const data = {
+    labels,
+    datasets: [
+        {
+        label: props.name,
+        data: props.data,
+        borderColor: 'rgba(94, 255, 0, 1)',
+        backgroundColor: 'rgba(94, 255, 0, 1)',
+        },
+    ],
+    };
     return(
         <>
             <div className="ContentBlock">
