@@ -114,7 +114,7 @@ export default function RandomEvent(props) {
     };
 
     return (
-        <div className = "Section">
+        <>
             <h2 style={{ textAlign: 'center', color: '#1a1a1a' }}>Random Event Generator</h2>
 
             <button className="buttonEvent" onClick={generateRandomEvent} >
@@ -137,6 +137,6 @@ export default function RandomEvent(props) {
                     No event currently active. Click the button above to start a scenario!
                 </p>
             )}
-        </div>
+        </>
     );
 }

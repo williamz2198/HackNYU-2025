@@ -38,12 +38,14 @@ function App() {
       <StockChartList stocks = {stocks}></StockChartList>
       <div className="ContentBlock">
         <StockList stocks = {stocks}></StockList>
-        <RandomEvent onCall={updateStocks}></RandomEvent>
+        <div className="Section">
+          <RandomEvent onCall={updateStocks}></RandomEvent>
+          <RestartButton></RestartButton>
+        </div>
       </div>
       <button onClick={() => setMoney((money) => money + 1)}>
         money is {money}
       </button> 
-      <RestartButton></RestartButton>
     </>
   )
 }
