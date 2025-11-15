@@ -99,6 +99,7 @@ export default function RandomEvent(props) {
     // State to hold the current random event object
     // Initialize it to null or an empty default event
     const [currentEvent, setCurrentEvent] = useState(null);
+    const [count, setCount] = useState(0);
 
     // Function to select a random event from the array
     const generateRandomEvent = () => {
@@ -109,8 +110,12 @@ export default function RandomEvent(props) {
         const newEvent = eventPrompts[randomIndex];
         
         // 3. Update the state, triggering a re-render
-        setCurrentEvent(newEvent);
-        props.onCall();
+        if(count < 24){
+            setCurrentEvent(newEvent);
+            props.onCall();
+        }
+        //increase count by 1 
+        setCount(count + 1);
     };
 
     return (
