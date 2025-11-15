@@ -4,6 +4,7 @@ import viteLogo from '/vite.svg'
 import './App.css'
 import MoneyDisplay from './components/MoneyDisplay'
 import StockList from './components/StockList'
+import RandomEvent from './components/RandomEvent'
 
 function App() {
   const [money,setMoney] = useState(0);
@@ -14,6 +15,7 @@ function App() {
         <button onClick={() => setMoney((money) => money + 1)}>
           money is {money}
         </button>
+        <RandomEvent></RandomEvent>
     </>
   )
 }
