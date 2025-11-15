@@ -12,10 +12,12 @@ function App() {
     <>
       <MoneyDisplay money = {money}></MoneyDisplay>
       <StockList></StockList>
-        <button onClick={() => setMoney((money) => money + 1)}>
-          money is {money}
-        </button>
+      <div className="ContentBlock">
         <RandomEvent></RandomEvent>
+      </div>
+      <button onClick={() => setMoney((money) => money + 1)}>
+        money is {money}
+      </button>  
     </>
   )
 }

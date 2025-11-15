@@ -1,5 +1,5 @@
 *{
-  background-color: chocolate;
+  background-color: rgba(5,71,42,1);
 }
 #root {
   width: 100%;
@@ -43,16 +43,11 @@
 }
 
 .Chart{
-  background-color: black;
+  background-color: white;
   color: white;
   margin: 1vh 1vw 1vh 1vw;
   height: 20vh;
   flex: 1;
-}
-
-.ContentBlock{
-  display: flex;
-  align-items: center;
 }
 
 .Text{
@@ -64,14 +59,18 @@
   justify-content: center;
 }
 
+.Section{
+  flex: 1;
+}
+
 .buttonEvent{
-  width: 100%, 
-  padding: 12px, 
-  fontSize: 16px, 
-  background-color: '#007bff', 
-  color: "white", 
-  border: 'none', 
-  borderRadius: '4px', 
-  cursor: 'pointer',
-  marginBottom: '20px'
+  width: 100%;
+  padding: 12px;
+  font-size: 16px;
+  background-color: '#007bff';
+  color: "white";
+  border: 'none';
+  border-Radius: '4px';
+  cursor: 'pointer';
+  margin-bottom: '20px';
 }
