@@ -1,7 +1,8 @@
+*{
+  background-color: chocolate;
+}
 #root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
+  width: 100%;
   text-align: center;
 }
 
@@ -39,4 +40,19 @@
 
 .read-the-docs {
   color: #888;
+}
+
+.Chart{
+  background-color: black;
+  color: white;
+  flex: 1;
+  margin: 1vh 1vw 1vh 1vw;
+}
+.Text{
+  background-color: black;
+}
+
+.ContentBlock{
+  display:flex;
+  justify-content: center;
 }
