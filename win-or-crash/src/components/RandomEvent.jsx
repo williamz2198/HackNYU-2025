@@ -1,42 +1,41 @@
 import React, { useState } from 'react';
 
 // --- Event Data Array ---
-// Define your list of possible events as objects.
-const eventPrompts = [
-    {
-        id: 1,
-        type: "Crisis",
-        title: "Alien Invasion",
-        description: "A hostile alien fleet has appeared and is bombarding the capital city!",
-    },
-    {
-        id: 2,
-        type: "Economic",
-        title: "Stock Market Crash",
-        description: "Global uncertainty has caused massive panic selling.",
-    },
-    {
-        id: 3,
-        type: "Opportunity",
-        title: "Technological Breakthrough",
-        description: "Your scientists have successfully harnessed fusion power!",
-    },
-    {
-        id: 4,
-        type: "Crisis",
-        title: "Plague Outbreak",
-        description: "A mysterious and fast-spreading illness is sweeping through the populace.",
-    },
-    {
-        id: 5,
-        type: "Economic",
-        title: "Gold Rush Discovered",
-        description: "A massive, easily accessible mineral deposit has been found in the northern territories.",
-    },
-];
-// ------------------------
 
 export default function RandomEvent() {
+    // Define your list of possible events as objects.
+    const eventPrompts = [
+        {
+            id: 1,
+            type: "Crisis",
+            title: "Alien Invasion",
+            description: "A hostile alien fleet has appeared and is bombarding the capital city!",
+        },
+        {
+            id: 2,
+            type: "Economic",
+            title: "Stock Market Crash",
+            description: "Global uncertainty has caused massive panic selling.",
+        },
+        {
+            id: 3,
+            type: "Opportunity",
+            title: "Technological Breakthrough",
+            description: "Your scientists have successfully harnessed fusion power!",
+        },
+        {
+            id: 4,
+            type: "Crisis",
+            title: "Plague Outbreak",
+            description: "A mysterious and fast-spreading illness is sweeping through the populace.",
+        },
+        {
+            id: 5,
+            type: "Economic",
+            title: "Gold Rush Discovered",
+            description: "A massive, easily accessible mineral deposit has been found in the northern territories.",
+        },
+    ];
     // State to hold the current random event object
     // Initialize it to null or an empty default event
     const [currentEvent, setCurrentEvent] = useState(null);
