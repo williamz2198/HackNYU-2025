@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 
 // --- Event Data Array ---
 
-export default function RandomEvent() {
+export default function RandomEvent(props) {
     // Define your list of possible events as objects.
     const eventPrompts = [
         {
@@ -50,10 +50,11 @@ export default function RandomEvent() {
         
         // 3. Update the state, triggering a re-render
         setCurrentEvent(newEvent);
+        props.onCall();
     };
 
     return (
-        <div style={{ padding: '30px', maxWidth: '600px', margin: '20px auto', fontFamily: 'Arial, sans-serif', border: '2px solid #333', borderRadius: '8px', backgroundColor: '#f9f9f9' }}>
+        <div className = "Section">
             <h2 style={{ textAlign: 'center', color: '#1a1a1a' }}>Random Event Generator</h2>
 
             <button className="buttonEvent" onClick={generateRandomEvent} >
@@ -62,7 +63,7 @@ export default function RandomEvent() {
             
             {/* Conditional Rendering: Display event details only if one has been generated */}
             {currentEvent ? (
-                <div style={{ border: '1px solid #ccc', padding: '15px', borderRadius: '4px', backgroundColor: 'white' }}>
+                <div>
                     <h3 style={{ marginTop: '0', color: currentEvent.type === 'Crisis' ? 'red' : currentEvent.type === 'Opportunity' ? 'green' : 'blue' }}>
                         <div>
                             {currentEvent.title}
@@ -73,7 +74,7 @@ export default function RandomEvent() {
                     </h3>
                 </div>
             ) : (
-                <p style={{ textAlign: 'center', fontStyle: 'italic', color: '#666' }}>
+                <p>
                     No event currently active. Click the button above to start a scenario!
                 </p>
             )}
