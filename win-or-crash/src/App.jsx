@@ -30,10 +30,10 @@ function App() {
   return (
     <>
       <MoneyDisplay money = {money}></MoneyDisplay>
-      {/* <StockList></StockList>
+      {/* <StockList></StockList> */}
         <button onClick={() => setMoney((money) => money + 1)}>
           money is {money}
-        </button> */}
+        </button>
       <div>
         <h1>Stock Simulator</h1>
         <StockList stocks={stocks} />
