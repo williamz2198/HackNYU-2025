@@ -5,4 +5,4 @@ export default function MoneyDisplay(props){
         <div>Money: {props.money}</div>
         </>
     )
-}
+}   
