@@ -42,8 +42,8 @@ export default function StockChart(props){
     };
     return(
         <>
-            <div className="ContentBlock">
-                <Line className = "Chart" data={data}/>
+            <div className="Chart">
+                <Line data={data}/>
             </div>
         </>
     )
