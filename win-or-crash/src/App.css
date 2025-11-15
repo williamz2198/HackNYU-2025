@@ -58,3 +58,20 @@
 .Text{
   background-color: black;
 }
+
+.ContentBlock{
+  display:flex;
+  justify-content: center;
+}
+
+.buttonEvent{
+  width: 100%, 
+  padding: 12px, 
+  fontSize: 16px, 
+  background-color: '#007bff', 
+  color: "white", 
+  border: 'none', 
+  borderRadius: '4px', 
+  cursor: 'pointer',
+  marginBottom: '20px'
+}
