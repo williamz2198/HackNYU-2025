@@ -5,6 +5,7 @@ import RandomEvent from './components/RandomEvent'
 import MoneyDisplay from './components/MoneyDisplay'
 import StockChartList from './components/StockChartList'
 import StockList from './components/StockList'
+import RestartButton from './components/RestartButton'
 
 function App() {
   const [money,setMoney] = useState(0);
@@ -41,7 +42,8 @@ function App() {
       </div>
       <button onClick={() => setMoney((money) => money + 1)}>
         money is {money}
-      </button>  
+      </button> 
+      <RestartButton></RestartButton>
     </>
   )
 }
