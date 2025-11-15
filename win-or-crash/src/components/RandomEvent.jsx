@@ -35,6 +35,66 @@ export default function RandomEvent() {
             title: "Gold Rush Discovered",
             description: "A massive, easily accessible mineral deposit has been found in the northern territories.",
         },
+        {
+            id: 6,
+            type: "Opportunity",
+            title: "New Planet Discovered",
+            description: "A mysterious planet is discovered and scientists found out there is an abundance of resources."
+        },
+        {
+            id: 7,
+            type: "Crisis",
+            title: "Zombie Invasion",
+            description: "Armies of zombies are attacking random parts of the world."
+        },
+        {
+            id: 8,
+            type: "Crisis",
+            title: "War",
+            description: "A war has broken out and posed a great risk to human lives."
+        },
+        {
+            id: 9,
+            type: "Economic",
+            title: "Stock Market Boom",
+            description: "Global certainty has caused massive surge in the markets."
+        },
+        {
+            id: 10,
+            type: "Crisis",
+            title: "Housing Crisis",
+            description: "All housing around the world has dropped in price and the economy is at risk."
+        },
+        {
+            id: 11,
+            type: "Opportunity",
+            title: "Global Baby Boom",
+            description: "A huge surge in birth rates leads to greater demands in the markets."
+        },
+        {
+            id: 12,
+            type: "Crisis",
+            title: "Thanos arrived",
+            description: "Thanos has come to hunt for a mysterious stone, leading the world into chaos."
+        },
+        {
+            id: 13,
+            type: "Opportunity",
+            title: "Alienware Technology landed",
+            description: "A huge supply of alienware technology has randomly landed around the world."
+        },
+        {
+            id: 14,
+            type: "Economic",
+            title: "Medical Breakthrough",
+            description: "Advances in medicine lead to a breakthrough that is revolutionary around the world."
+        },
+        {
+            id: 15,
+            type: "Crisis",
+            title: "Robot invasion",
+            description: "Robot are invading this world and attempt to take over humanity."
+        },   
     ];
     // State to hold the current random event object
     // Initialize it to null or an empty default event
