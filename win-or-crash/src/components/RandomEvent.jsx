@@ -57,9 +57,13 @@ export default function RandomEvent(props) {
 
     const [currentEvent, setCurrentEvent] = useState(null);
     const [count, setCount] = useState(0);
+    const [afterwards, setAfterwards] = useState("");
 
     // Function to select a random event from the array
     const generateRandomEvent = () => {
+        if(currentEvent!=null){
+            setAfterwards(currentEvent.afterwards);
+        }
         const randomIndex = Math.floor(Math.random() * eventPrompts.length);
         const newEvent = eventPrompts[randomIndex];
         
@@ -73,7 +77,7 @@ export default function RandomEvent(props) {
     };
 
     return (
-        <div className = "Section">
+        <>
             <h2 style={{ textAlign: 'center', color: '#1a1a1a' }}>Random Event Generator</h2>
 
             <button className="buttonEvent" onClick={generateRandomEvent} >
@@ -84,6 +88,8 @@ export default function RandomEvent(props) {
                 <div>
                     <h3 style={{ marginTop: '0', color: currentEvent.type === 'Crisis' ? 'red' : currentEvent.type === 'Opportunity' ? 'green' : 'blue' }}>
                         <div>
+                            <div>{afterwards}</div>
+                            <br/>
                             {currentEvent.title}
                             <p>
                                 {currentEvent.description}
@@ -96,6 +102,6 @@ export default function RandomEvent(props) {
                     No event currently active. Click the button above to start a scenario!
                 </p>
             )}
-        </div>
+        </>
     );
 }
