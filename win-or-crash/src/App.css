@@ -42,10 +42,9 @@
 
 .Chart{
   background-color: white;
-  color: white;
-  margin: 1vh 1vw 1vh 1vw;
-  height: 20vh;
-  flex: 1;
+  align-items: center;
+  margin-left: 10%;
+  margin-right: 10%;
 }
 
 .Text{
