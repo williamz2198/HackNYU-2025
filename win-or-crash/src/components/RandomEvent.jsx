@@ -7,15 +7,14 @@ export default function RandomEvent(props) {
     const eventPrompts = [
         {
             id: 1,
-            type: "Crisis",
-            title: "Alien Invasion",
-            description: "A hostile alien fleet has appeared and is bombarding the capital city!",
+            title: "Zombie Concern",
+            description: "There's been a rumor that people are slowly turning into zombies. People want to quickly find the medicine and go into quarantine.",
+            afterwards: "turns out, it was a false alarm. People from CrazyVille just decided to dress up as zombies for Halloween."
         },
         {
             id: 2,
-            type: "Economic",
-            title: "Stock Market Crash",
-            description: "Global uncertainty has caused massive panic selling.",
+            title: "Popstar Fans",
+            description: "A well-known popstar is visiting from another country and EVERYONE heard aobu",
         },
         {
             id: 3,
@@ -96,17 +95,13 @@ export default function RandomEvent(props) {
             description: "Robot are invading this world and attempt to take over humanity."
         },   
     ];
-    // State to hold the current random event object
-    // Initialize it to null or an empty default event
+
     const [currentEvent, setCurrentEvent] = useState(null);
     const [count, setCount] = useState(0);
 
     // Function to select a random event from the array
     const generateRandomEvent = () => {
-        // 1. Calculate a random index based on the array length
         const randomIndex = Math.floor(Math.random() * eventPrompts.length);
-        
-        // 2. Select the event at the random index
         const newEvent = eventPrompts[randomIndex];
         
         // 3. Update the state, triggering a re-render
@@ -126,7 +121,6 @@ export default function RandomEvent(props) {
                 Trigger Random Event
             </button>
             
-            {/* Conditional Rendering: Display event details only if one has been generated */}
             {currentEvent ? (
                 <div>
                     <h3 style={{ marginTop: '0', color: currentEvent.type === 'Crisis' ? 'red' : currentEvent.type === 'Opportunity' ? 'green' : 'blue' }}>
