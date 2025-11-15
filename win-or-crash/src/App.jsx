@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import './App.css'
 import { simulatePrice } from './utils/simulatePrice'
+import RandomEvent from './components/RandomEvent'
 import MoneyDisplay from './components/MoneyDisplay'
 import StockList from './components/StockList'
 
@@ -38,6 +39,7 @@ function App() {
         <h1>Stock Simulator</h1>
         <StockList stocks={stocks} />
       </div>
+      <RandomEvent></RandomEvent>
     </>
   )
 }
