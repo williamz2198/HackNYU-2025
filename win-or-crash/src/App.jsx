@@ -91,10 +91,14 @@ function App() {
     console.log(temp.data);
     setPlayerStocks(temp);
   }
-  const updateStocks = (count) =>{
+  const updateStocks = (stockType,effect) =>{
     setStocks(prev => {
       return prev.map(stock => {
-          const newPrice = simulatePrice(stock.currentPrice, stock.trend, stock.volatility);
+          let newPrice = simulatePrice(stock.currentPrice, stock.trend, stock.volatility);
+          if(stockType.includes(stock.category)){
+            let multiplier = effect == "negative" ? random(0.5 , 0.8): effect == "positive" ? random(1.2, 1.5): 1;
+            newPrice = stock.currentPrice*multiplier;
+          }
             return {
             ...stock,
             currentPrice: newPrice,
