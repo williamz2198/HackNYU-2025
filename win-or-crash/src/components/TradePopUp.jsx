@@ -26,7 +26,7 @@ export default function TradePopup({ isOpen, mode = "buy", stock = null, money =
       display: "flex", justifyContent: "center", alignItems: "center"
     }}>
       <div style={{
-        background: "white",
+        background: "black",
         padding: "20px",
         borderRadius: "10px",
         width: "300px"
