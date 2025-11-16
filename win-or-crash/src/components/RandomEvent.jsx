@@ -100,29 +100,29 @@ export default function RandomEvent(props) {
             </button>
             
             {currentEvent ? (
-                    <div className="event-output-container"> 
-                    {currentEvent.image_src && (
-                        <img 
-                            src={currentEvent.image_src} 
-                            alt={currentEvent.title} 
-                            className="event-image" 
-                            style={{ 
-                                width: '100%', 
-                                maxWidth: '300px', 
-                                height: 'auto', 
-                                marginBottom: '15px', 
-                                borderRadius: '8px' 
-                            }}
-                        />
-                    )}
+                <div>
                     <h3 style={{ marginTop: '0', color: currentEvent.type === 'Crisis' ? 'red' : currentEvent.type === 'Opportunity' ? 'green' : 'blue' }}>
                         <div>
                             <div>{afterwards}</div>
                             <br/>
                             {currentEvent.title}
                             <p>
-                                {currentEvent.description}
+                                {currentEvent.image_src && (
+                                    <img
+                                        src={currentEvent.image_src}
+                                        alt={currentEvent.title}
+                                        className="event-image"
+                                        style={{
+                                            width: '100%',
+                                            maxWidth: '300px',
+                                            height: 'auto',
+                                            marginBottom: '15px',
+                                            borderRadius: '8px'
+                                        }}
+                                    />
+                                )}
                             </p>
+                                {currentEvent.description}
                         </div>
                     </h3>
                 </div>
