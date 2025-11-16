@@ -48,7 +48,7 @@
 }
 
 .Text{
-  background-color: black;
+  margin: 0 3vw 0 3vw;
 }
 
 .ContentBlock{
@@ -74,4 +74,7 @@
   border-Radius: '4px';
   cursor: 'pointer';
   margin-bottom: '20px';
+}
+.MoneyDisplay{
+  font-size: 2em;
 }

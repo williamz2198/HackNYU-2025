@@ -100,15 +100,15 @@ export default function RandomEvent(props) {
 
     return (
         <>
-            <h2 style={{ textAlign: 'center', color: '#1a1a1a' }}>Random Event Generator</h2>
+            <h2 style={{ textAlign: 'center', color: '#1a1a1a' }}>Current Event</h2>
 
             <button className="buttonEvent" onClick={generateRandomEvent} >
-                Trigger Random Event
+                Next Day
             </button>
             
             {currentEvent ? (
                 <div>
-                    <h3 style={{ marginTop: '0', color: currentEvent.type === 'Crisis' ? 'red' : currentEvent.type === 'Opportunity' ? 'green' : 'blue' }}>
+                    <h3 className="Text" style={{ marginTop: '0', color: currentEvent.type === 'Crisis' ? 'red' : currentEvent.type === 'Opportunity' ? 'green' : 'blue' }}>
                         <div>
                             <div>{afterwards}</div>
                             <br/>
@@ -135,7 +135,7 @@ export default function RandomEvent(props) {
                 </div>
             ) : (
                 <p>
-                    No event currently active. Click the button above to start a scenario!
+                    No event currently active. Click the button above to start the next day!
                 </p>
             )}
         </>
