@@ -31,19 +31,22 @@ export default function StockChart(props){
     const labels = generateLabels();
     const data = {
     labels,
-    datasets: [
+    datasets: props.override!=null ? props.override : [
         {
-        label: props.name,
-        data: props.data,
-        borderColor: 'rgba(94, 255, 0, 1)',
-        backgroundColor: 'rgba(94, 255, 0, 1)',
-        },
-    ],
+            label: props.name,
+            data: props.data,
+            borderColor: 'rgba(94, 255, 0, 1)',
+            backgroundColor: 'rgba(94, 255, 0, 1)',
+        }
+    ]
     };
     return(
         <>
             <div className="Chart">
                 <Line data={data}/>
+                {
+                    // props.override!=null ? console.log(data) : console.log()
+                }
             </div>
         </>
     )

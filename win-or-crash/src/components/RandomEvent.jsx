@@ -70,7 +70,7 @@ export default function RandomEvent(props) {
         // 3. Update the state, triggering a re-render
         if(count < 24){
             setCurrentEvent(newEvent);
-            props.onCall();
+            props.onCall(count);
         }
         //increase count by 1 
         setCount(count + 1);

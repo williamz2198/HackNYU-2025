@@ -1,9 +1,10 @@
 import { useState, useEffect } from 'react'
 import './App.css'
 import { simulatePrice } from './utils/simulatePrice'
+import { random,randomColor } from './utils/random'
 import RandomEvent from './components/RandomEvent'
 import MoneyDisplay from './components/MoneyDisplay'
-import StockChartList from './components/StockChartList'
+import StockChart from './components/StockChart'
 import StockList from './components/StockList'
 import TradePopup from './components/TradePopUp'
 import RestartButton from './components/RestartButton'
@@ -21,7 +22,15 @@ function App() {
     {category: "Crypto", name: "67Coin", currentPrice: 700, trend: 0.0003, volatility: 0.03, history: [700] },
     {category: "Film", name: "StanLeeTheGoat", currentPrice: 700, trend: 0.0003, volatility: 0.03, history: [700] }
   ])
-  const updateStocks = () =>{
+  const [playerStocks,setPlayerStocks] = useState();
+  const generateData = (history) =>{
+    let res = [];
+    for(let i = 0; i < history.length; i++){
+      res.push(history[i]);
+    }
+    return res;
+  }
+  const updateStocks = (count) =>{
     setStocks(prev => {
       return prev.map(stock => {
           const newPrice = simulatePrice(stock.currentPrice, stock.trend, stock.volatility);
@@ -32,6 +41,33 @@ function App() {
           };
       });
     });
+    let temp = playerStocks;
+    for(let i = 0; i < stocks.length; i++){
+      if(portfolio.hasOwnProperty(stocks[i].name) && playerStocks==null){
+        temp = [{
+          label: stocks[i].name,
+          data: generateData(stocks[i].history),
+          borderColor: randomColor(),
+          backgroundColor: randomColor()
+        }];
+      }
+      if(portfolio.hasOwnProperty(stocks[i].name)){
+        let index = temp.findIndex(stock => stock['label'] == stocks[i].name);
+        if(index < 0){
+          temp = [...temp,{
+            label: stocks[i].name,
+            data: generateData(stocks[i].history),
+            borderColor: randomColor(),
+            backgroundColor: randomColor()
+          }];          
+          temp[temp.length-1].data.push(stocks[i].currentPrice);
+        }
+        else{
+          temp[index].data.push(stocks[i].currentPrice);
+        }
+      }
+    }
+    setPlayerStocks(temp);
   }
   const [popupOpen, setPopupOpen] = useState(false);
   const [popupMode, setPopupMode] = useState("buy"); // "buy" or "sell"
@@ -107,9 +143,8 @@ function App() {
         onClose={closePopup}
       />
       <MoneyDisplay money = {money}></MoneyDisplay>
-      <StockChartList stocks = {stocks}></StockChartList>
+      <StockChart override = {playerStocks} name={"Your stocks"}></StockChart>
       <div className="ContentBlock">
-        
         <StockList 
           stocks={stocks} 
           onBuy={(stock) => openPopup(stock, "buy")}
