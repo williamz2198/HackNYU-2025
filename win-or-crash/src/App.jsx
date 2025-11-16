@@ -6,6 +6,7 @@ import MoneyDisplay from './components/MoneyDisplay'
 import StockChartList from './components/StockChartList'
 import StockList from './components/StockList'
 import TradePopup from './components/TradePopUp'
+import RestartButton from './components/RestartButton'
 
 function App() {
   const [money,setMoney] = useState(10000);
@@ -14,7 +15,7 @@ function App() {
     {category: "HealthCare", name: "CoronaCare", currentPrice: 150, trend: 0.0002, volatility: 0.02, history: [150] },
     {category: "Energy", name: "GottaGoFast", currentPrice: 700, trend: 0.0003, volatility: 0.03, history: [700] },
     {category: "Materials", name: "IronDiggers", currentPrice: 700, trend: 0.0003, volatility: 0.03, history: [700] },
-    {category: "Social Media", name: "InstaCom", currentPrice: 700, trend: 0.0003, volatility: 0.03, history: [700] },
+    {category: "SocialMedia", name: "InstaCom", currentPrice: 700, trend: 0.0003, volatility: 0.03, history: [700] },
     {category: "Technology", name: "Newidia", currentPrice: 700, trend: 0.0003, volatility: 0.03, history: [700] },
     {category: "Travel", name: "Thomas&Friends", currentPrice: 700, trend: 0.0003, volatility: 0.03, history: [700] },
     {category: "Crypto", name: "67Coin", currentPrice: 700, trend: 0.0003, volatility: 0.03, history: [700] },
@@ -108,13 +109,16 @@ function App() {
       <MoneyDisplay money = {money}></MoneyDisplay>
       <StockChartList stocks = {stocks}></StockChartList>
       <div className="ContentBlock">
+        
         <StockList 
           stocks={stocks} 
           onBuy={(stock) => openPopup(stock, "buy")}
           onSell={(stock) => openPopup(stock, "sell")}
         />
         <RandomEvent onCall={updateStocks}></RandomEvent>
+        <RestartButton></RestartButton>
       </div>
+
       
     </>
   )

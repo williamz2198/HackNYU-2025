@@ -7,106 +7,64 @@ export default function RandomEvent(props) {
     const eventPrompts = [
         {
             id: 1,
-            type: "Crisis",
-            title: "Alien Invasion",
-            description: "A hostile alien fleet has appeared and is bombarding the capital city!",
+            effect: "negative",
+            stock: "healthcare",
+            title: "Zombie Concern",
+            description: "There's been a rumor that people are slowly turning into zombies. People want to quickly find the medicine and go into quarantine. However, the truth of this rumor is not confirmed...",
+            afterwards: "Turns out, it was a false alarm. People from CrazyVille just decided to dress up as zombies for Halloween. People have wasted money on unnecessary healthcare supplies and there is a lot of public backlash."
         },
         {
             id: 2,
-            type: "Economic",
-            title: "Stock Market Crash",
-            description: "Global uncertainty has caused massive panic selling.",
+            effect: "positive",
+            stock: "travel socialmedia",
+            title: "Popstar Fans",
+            description: "A well-known popstar is visiting from another country and EVERYONE heard about it. Tickets are selling out fast from all over the country!",
+            afterwards: "The popstar's visit was a huge success! Fans flocked to see them perform, boosting local businesses and creating a vibrant atmosphere in the city."
         },
         {
             id: 3,
-            type: "Opportunity",
-            title: "Technological Breakthrough",
-            description: "Your scientists have successfully harnessed fusion power!",
+            effect: "negative",
+            stock: "materials socialmedia",
+            title: "Jewlery Hype",
+            description: "A new style has appeared throughout social media. People are trying to wear the most jewlery possible to show off their popularity.",
+            afterwards: "The jewlery trend has died down as quickly as it started. People realized that comfort and practicality were more important than flashy accessories."
         },
         {
             id: 4,
-            type: "Crisis",
-            title: "Plague Outbreak",
-            description: "A mysterious and fast-spreading illness is sweeping through the populace.",
+            effect: "negative",
+            stock: "socialmedia technology",
+            title: "Influencer Controversy",
+            description: "A popular influencer has been caught in a scandal talking about how AI is stealing their data that has everyone talking. People are worried about their privacy online.",
+            afterwards: "The controversy has blown over as quickly as it started. People have become more cautious about their online presence, but the influencer has lost a significant portion of their following."
         },
         {
             id: 5,
-            type: "Economic",
-            title: "Gold Rush Discovered",
-            description: "A massive, easily accessible mineral deposit has been found in the northern territories.",
+            effect: "neutral",
+            stock: "materials energy",
+            title: "New Rush Discovered",
+            description: "A massive, easily accessible mineral deposit has been found in the northern territories. This deposit contains a new material that reduces energy consumption significantly.",
+            afterwards: "The mineral deposit has been successfully mined and is now being used in various industries. While has been a huge success, people are needing less energy now."
         },
         {
             id: 6,
-            type: "Opportunity",
-            title: "New Planet Discovered",
-            description: "A mysterious planet is discovered and scientists found out there is an abundance of resources."
+            effect: "positive",
+            stock: "food healthcare",
+            title: "Miracle Fish Discovered",
+            description: "A new type of fish has been discovered that feeds families for weeks with just one catch but also extremely difficult to catch.",
+            afterwards: "The miracle fish has become a staple in diets around the world. Its abundance and nutritional value have helped combat hunger and malnutrition in many communities."
         },
-        {
-            id: 7,
-            type: "Crisis",
-            title: "Zombie Invasion",
-            description: "Armies of zombies are attacking random parts of the world."
-        },
-        {
-            id: 8,
-            type: "Crisis",
-            title: "War",
-            description: "A war has broken out and posed a great risk to human lives."
-        },
-        {
-            id: 9,
-            type: "Economic",
-            title: "Stock Market Boom",
-            description: "Global certainty has caused massive surge in the markets."
-        },
-        {
-            id: 10,
-            type: "Crisis",
-            title: "Housing Crisis",
-            description: "All housing around the world has dropped in price and the economy is at risk."
-        },
-        {
-            id: 11,
-            type: "Opportunity",
-            title: "Global Baby Boom",
-            description: "A huge surge in birth rates leads to greater demands in the markets."
-        },
-        {
-            id: 12,
-            type: "Crisis",
-            title: "Thanos arrived",
-            description: "Thanos has come to hunt for a mysterious stone, leading the world into chaos."
-        },
-        {
-            id: 13,
-            type: "Opportunity",
-            title: "Alienware Technology landed",
-            description: "A huge supply of alienware technology has randomly landed around the world."
-        },
-        {
-            id: 14,
-            type: "Economic",
-            title: "Medical Breakthrough",
-            description: "Advances in medicine lead to a breakthrough that is revolutionary around the world."
-        },
-        {
-            id: 15,
-            type: "Crisis",
-            title: "Robot invasion",
-            description: "Robot are invading this world and attempt to take over humanity."
-        },   
     ];
-    // State to hold the current random event object
-    // Initialize it to null or an empty default event
+
     const [currentEvent, setCurrentEvent] = useState(null);
     const [count, setCount] = useState(0);
+    const [afterwards, setAfterwards] = useState("");
 
     // Function to select a random event from the array
     const generateRandomEvent = () => {
-        // 1. Calculate a random index based on the array length
+        if(currentEvent!=null){
+            setAfterwards(currentEvent.afterwards);
+        }
         const randomIndex = Math.floor(Math.random() * eventPrompts.length);
-        
-        // 2. Select the event at the random index
         const newEvent = eventPrompts[randomIndex];
         
         // 3. Update the state, triggering a re-render
@@ -119,18 +77,19 @@ export default function RandomEvent(props) {
     };
 
     return (
-        <div className = "Section">
+        <>
             <h2 style={{ textAlign: 'center', color: '#1a1a1a' }}>Random Event Generator</h2>
 
             <button className="buttonEvent" onClick={generateRandomEvent} >
                 Trigger Random Event
             </button>
             
-            {/* Conditional Rendering: Display event details only if one has been generated */}
             {currentEvent ? (
                 <div>
                     <h3 style={{ marginTop: '0', color: currentEvent.type === 'Crisis' ? 'red' : currentEvent.type === 'Opportunity' ? 'green' : 'blue' }}>
                         <div>
+                            <div>{afterwards}</div>
+                            <br/>
                             {currentEvent.title}
                             <p>
                                 {currentEvent.description}
@@ -143,6 +102,6 @@ export default function RandomEvent(props) {
                     No event currently active. Click the button above to start a scenario!
                 </p>
             )}
-        </div>
+        </>
     );
 }
