@@ -13,13 +13,13 @@ function App() {
   const [money,setMoney] = useState(10000);
   const [portfolio, setPortfolio] = useState({}); // key: stock.name -> { quantity, avgPrice }
   const [stocks, setStocks] = useState([
-    {category: "HealthCare", name: "CoronaCare", currentPrice: 4000, trend: 0.0002, volatility: 0.2, history: [4000] },
-    {category: "Materials", name: "IronDiggers", currentPrice: 3500, trend: 0.0003, volatility: 0.25, history: [3500] },
+    {category: "HealthCare", name: "CoronaCare", currentPrice: 4000, trend: 0.0008, volatility: 0.2, history: [4000] },
+    {category: "Materials", name: "IronDiggers", currentPrice: 3500, trend: 0.0007, volatility: 0.25, history: [3500] },
     {category: "SocialMedia", name: "InstaCom", currentPrice: 3000, trend: 0.0003, volatility: 0.17, history: [3000] },
-    {category: "Technology", name: "Newidia", currentPrice: 1000, trend: 0.0003, volatility: 0.4, history: [1000] },
-    {category: "Travel", name: "Thomas&Friends", currentPrice: 5000, trend: 0.0003, volatility: 0.1, history: [5000] },
-    {category: "Crypto", name: "67Coin", currentPrice: 10000, trend: 0.0003, volatility: 0.03, history: [10000] },
-    {category: "Film", name: "StanLeeTheGoat", currentPrice: 7500, trend: 0.0003, volatility: 0.07, history: [7500] }
+    {category: "Technology", name: "Newidia", currentPrice: 1000, trend: -0.0015, volatility: 0.4, history: [1000] },
+    {category: "Travel", name: "Thomas&Friends", currentPrice: 5000, trend: -0.0013, volatility: 0.1, history: [5000] },
+    {category: "Crypto", name: "67Coin", currentPrice: 10000, trend: -0.0001, volatility: 0.03, history: [10000] },
+    {category: "Film", name: "StanLeeTheGoat", currentPrice: 7500, trend: -0.0006, volatility: 0.07, history: [7500] }
   ])
   const [playerStocks,setPlayerStocks] = useState([
     {label: "Your stocks",
