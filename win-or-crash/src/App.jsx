@@ -24,7 +24,7 @@ function App() {
   ])
   const [playerStocks,setPlayerStocks] = useState([
     {label: "Your stocks",
-      data:[10000],
+      data:[0],
       borderColor: 'rgba(94, 255, 0, 1)',
       backgroundColor: 'rgba(94, 255, 0, 1)',
     }
@@ -87,7 +87,7 @@ function App() {
     //     }
     //   }
     // }
-    let currMoney = money;
+    let currMoney = 0;
     for(const key in portfolio){
       currMoney+=currStocks[currStocks.findIndex(stock => stock['name'] == key)].currentPrice * portfolio[key].quantity;
     }
