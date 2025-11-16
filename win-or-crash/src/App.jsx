@@ -95,6 +95,7 @@ function App() {
     setPlayerStocks(temp);
   }
   const updateStocks = (stockType,effect) =>{
+    if (gameOver) return; // stop updating after game end
     let newStocks = stocks.map(stock => {
           let newPrice = simulatePrice(stock.currentPrice, stock.trend, stock.volatility);
           if(stockType.includes(stock.category)){
@@ -109,10 +110,21 @@ function App() {
       });
     setStocks(newStocks);
     updatePlayerStocks(newStocks);
+    // increment day counter whenever stocks are updated (covers clicking RandomEvent)
+    setDayCount(prev => {
+      const next = prev + 1;
+      if (next >= 24) {
+        setGameOver(true);
+      }
+      return next;
+    });
   }
   const [popupOpen, setPopupOpen] = useState(false);
-  const [popupMode, setPopupMode] = useState("buy"); // "buy" or "sell"
+  const [popupMode, setPopupMode] = useState("buy");
   const [selectedStock, setSelectedStock] = useState(null);
+  const [gameOver, setGameOver] = useState(false);
+  const [dayCount, setDayCount] = useState(0); // in-game days passed
+
   function openPopup(stock, mode) {
     setSelectedStock(stock);
     setPopupMode(mode);
@@ -122,6 +134,29 @@ function App() {
   function closePopup() {
     setPopupOpen(false);
   }
+
+  function calculateTotalScore() {
+    let stockValue = 0;
+    for (const key in portfolio) {
+      const stock = stocks.find(s => s.name === key);
+      if (stock) {
+        stockValue += stock.currentPrice * portfolio[key].quantity;
+      }
+    }
+    return money + stockValue;
+  }
+
+  function endGame() {
+    setGameOver(true);
+  }
+
+  function restartGame() {
+    setMoney(10000);
+    setPortfolio({});
+    setStocks(stocks.map(s => ({ ...s, history: [s.currentPrice] })));
+    setGameOver(false);
+  }
+
   function confirmTrade(amount) {
     const price = selectedStock.currentPrice;
     const key = selectedStock.name; // use name as unique key
@@ -175,18 +210,42 @@ function App() {
   }
   return (
     <>
+     {gameOver && (
+       <div style={{
+         position: "fixed",
+         top: 0, left: 0, right: 0, bottom: 0,
+         background: "rgba(0,0,0,0.7)",
+         display: "flex", justifychange: "center", alignItems: "center",
+         zIndex: 1000
+       }}>
+         <div style={{
+           background: "black",
+           padding: "40px",
+           borderRadius: "15px",
+           textAlign: "center",
+           border: "2px solid white"
+         }}>
+           <h1>Game Over!</h1>
+           <p>Cash: ${money.toFixed(2)}</p>
+           <p>Stock Value: ${(calculateTotalScore() - money).toFixed(2)}</p>
+           <h2>Total Score: ${calculateTotalScore().toFixed(2)}</h2>
+           <button onClick={restartGame} style={{ marginTop: "20px", padding: "10px 20px" }}>Play Again</button>
+         </div>
+       </div>
+     )}
 
       <TradePopup
         isOpen={popupOpen}
         mode={popupMode}
         stock={selectedStock}
-        money = {money}
+        money={money}
         onConfirm={confirmTrade}
         onClose={closePopup}
       />
-      <MoneyDisplay money = {money}></MoneyDisplay>
-      <StockChart override = {playerStocks} name={"Your stocks"}></StockChart>
+      <MoneyDisplay money={money}></MoneyDisplay>
+      <StockChart override={playerStocks} name={"Your stocks"}></StockChart>
       <div className="ContentBlock">
+        <div style={{ padding: 8, color: "white" }}>Day: {dayCount} / 24</div>
         <StockList 
           stocks={stocks} 
           portfolio={portfolio}
@@ -196,6 +255,7 @@ function App() {
         <div className="Section">
           <RandomEvent onCall={updateStocks}></RandomEvent>
           <RestartButton></RestartButton>
+          <button onClick={endGame} style={{ marginTop: "10px" }}>End Game</button>
         </div>
       </div>
 
