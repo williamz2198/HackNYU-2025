@@ -1,4 +1,10 @@
 import React, { useState } from 'react';
+import zombieImage from '../assets/images/zombie.jpg'; 
+import popstarImage from '../assets/images/popstar.jpg';
+import jewleryImage from '../assets/images/jewlery.jpg';
+import scandalImage from '../assets/images/scandal.jpg';
+import mineralsImage from '../assets/images/minerals.jpg';
+import fishImage from '../assets/images/fish.jpg';
 
 // --- Event Data Array ---
 
@@ -11,7 +17,8 @@ export default function RandomEvent(props) {
             stock: "healthcare",
             title: "Zombie Concern",
             description: "There's been a rumor that people are slowly turning into zombies. People want to quickly find the medicine and go into quarantine. However, the truth of this rumor is not confirmed...",
-            afterwards: "Turns out, it was a false alarm. People from CrazyVille just decided to dress up as zombies for Halloween. People have wasted money on unnecessary healthcare supplies and there is a lot of public backlash."
+            afterwards: "Turns out, it was a false alarm. People from CrazyVille just decided to dress up as zombies for Halloween. People have wasted money on unnecessary healthcare supplies and there is a lot of public backlash.",
+            image_src: zombieImage,
         },
         {
             id: 2,
@@ -19,7 +26,8 @@ export default function RandomEvent(props) {
             stock: "travel socialmedia",
             title: "Popstar Fans",
             description: "A well-known popstar is visiting from another country and EVERYONE heard about it. Tickets are selling out fast from all over the country!",
-            afterwards: "The popstar's visit was a huge success! Fans flocked to see them perform, boosting local businesses and creating a vibrant atmosphere in the city."
+            afterwards: "The popstar's visit was a huge success! Fans flocked to see them perform, boosting local businesses and creating a vibrant atmosphere in the city.",
+            image_src: popstarImage,
         },
         {
             id: 3,
@@ -27,7 +35,8 @@ export default function RandomEvent(props) {
             stock: "materials socialmedia",
             title: "Jewlery Hype",
             description: "A new style has appeared throughout social media. People are trying to wear the most jewlery possible to show off their popularity.",
-            afterwards: "The jewlery trend has died down as quickly as it started. People realized that comfort and practicality were more important than flashy accessories."
+            afterwards: "The jewlery trend has died down as quickly as it started. People realized that comfort and practicality were more important than flashy accessories.",
+            image_src: jewleryImage,
         },
         {
             id: 4,
@@ -35,7 +44,8 @@ export default function RandomEvent(props) {
             stock: "socialmedia technology",
             title: "Influencer Controversy",
             description: "A popular influencer has been caught in a scandal talking about how AI is stealing their data that has everyone talking. People are worried about their privacy online.",
-            afterwards: "The controversy has blown over as quickly as it started. People have become more cautious about their online presence, but the influencer has lost a significant portion of their following."
+            afterwards: "The controversy has blown over as quickly as it started. People have become more cautious about their online presence, but the influencer has lost a significant portion of their following.",
+            image_src: popstarImage,
         },
         {
             id: 5,
@@ -43,7 +53,8 @@ export default function RandomEvent(props) {
             stock: "materials energy",
             title: "New Rush Discovered",
             description: "A massive, easily accessible mineral deposit has been found in the northern territories. This deposit contains a new material that reduces energy consumption significantly.",
-            afterwards: "The mineral deposit has been successfully mined and is now being used in various industries. While has been a huge success, people are needing less energy now."
+            afterwards: "The mineral deposit has been successfully mined and is now being used in various industries. While has been a huge success, people are needing less energy now.",
+            image_src: mineralsImage,
         },
         {
             id: 6,
@@ -51,7 +62,8 @@ export default function RandomEvent(props) {
             stock: "food healthcare",
             title: "Miracle Fish Discovered",
             description: "A new type of fish has been discovered that feeds families for weeks with just one catch but also extremely difficult to catch.",
-            afterwards: "The miracle fish has become a staple in diets around the world. Its abundance and nutritional value have helped combat hunger and malnutrition in many communities."
+            afterwards: "The miracle fish has become a staple in diets around the world. Its abundance and nutritional value have helped combat hunger and malnutrition in many communities.",
+            image_src: fishImage,
         },
     ];
 
@@ -88,7 +100,21 @@ export default function RandomEvent(props) {
             </button>
             
             {currentEvent ? (
-                <div>
+                    <div className="event-output-container"> 
+                    {currentEvent.image_src && (
+                        <img 
+                            src={currentEvent.image_src} 
+                            alt={currentEvent.title} 
+                            className="event-image" 
+                            style={{ 
+                                width: '100%', 
+                                maxWidth: '300px', 
+                                height: 'auto', 
+                                marginBottom: '15px', 
+                                borderRadius: '8px' 
+                            }}
+                        />
+                    )}
                     <h3 style={{ marginTop: '0', color: currentEvent.type === 'Crisis' ? 'red' : currentEvent.type === 'Opportunity' ? 'green' : 'blue' }}>
                         <div>
                             <div>{afterwards}</div>
