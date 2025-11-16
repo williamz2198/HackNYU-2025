@@ -65,8 +65,11 @@ export default function RandomEvent(props) {
             setAfterwards(currentEvent.afterwards);
         }
         const randomIndex = Math.floor(Math.random() * eventPrompts.length);
-        const newEvent = eventPrompts[randomIndex];
-        
+        let oldEvent = currentEvent;
+        let newEvent = eventPrompts[randomIndex];
+        while(oldEvent==newEvent){
+            newEvent = eventPrompts[randomIndex];
+        }
         // 3. Update the state, triggering a re-render
         if(count < 24){
             setCurrentEvent(newEvent);
