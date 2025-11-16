@@ -101,7 +101,7 @@ export default function RandomEvent(props) {
         {
             id: 10,
             effect: "positive",
-            stock: "technology",
+            stock: "Technology",
             title: "AI Upgrade",
             description: "A new Human-like AI has been developed that can perform complex tasks with ease. This AI is extrmemly intellectual and can learn new skills quickly, but people are worried about AI taking over their lives",
             afterwards: "Turns out the AI was designed to assist humans in their daily tasks, leading to increased productivity and efficiency. People have embraced the technology, finding it to be a valuable tool rather than a threat.",
