@@ -23,12 +23,66 @@ function App() {
     {category: "Film", name: "StanLeeTheGoat", currentPrice: 700, trend: 0.0003, volatility: 0.03, history: [700] }
   ])
   const [playerStocks,setPlayerStocks] = useState();
-  const generateData = (history) =>{
+  const generateData = (stock) =>{
+    if(stock.history.length < 1){
+      return [stock.currentPrice];
+    }
     let res = [];
-    for(let i = 0; i < history.length; i++){
-      res.push(history[i]);
+    for(let i = 0; i < stock.history.length; i++){
+      res.push(stock.history[i]);
     }
     return res;
+  }
+  const updatePlayerStock = (stock) =>{
+    let temp = playerStocks;
+    if(playerStocks==null){
+      temp = [{
+          label: stock.name,
+          data: generateData(stock),
+          borderColor: randomColor(),
+          backgroundColor: randomColor()
+        }];
+    }
+    else{
+      temp = [...temp,{
+        label: stock.name,
+        data: generateData(stock),
+        borderColor: randomColor(),
+        backgroundColor: randomColor()
+      }];
+    }
+    temp[temp.length-1].data.push(stock.currentPrice);
+    setPlayerStocks(temp);
+  }
+  const updatePlayerStocks = () =>{
+    console.log("update");
+    let temp = playerStocks;
+    for(let i = 0; i < stocks.length; i++){
+      if(portfolio.hasOwnProperty(stocks[i].name) && playerStocks==null){
+        temp = [{
+          label: stocks[i].name,
+          data: generateData(stocks[i]),
+          borderColor: randomColor(),
+          backgroundColor: randomColor()
+        }];
+      }
+      if(portfolio.hasOwnProperty(stocks[i].name)){
+        let index = temp.findIndex(stock => stock['label'] == stocks[i].name);
+        if(index < 0){
+          temp = [...temp,{
+            label: stocks[i].name,
+            data: generateData(stocks[i]),
+            borderColor: randomColor(),
+            backgroundColor: randomColor()
+          }];        
+          temp[temp.length-1].data.push(stocks[i].currentPrice);
+        }
+        else{
+          temp[index].data.push(stocks[i].currentPrice);
+        }
+      }
+    }
+    setPlayerStocks(temp);
   }
   const updateStocks = (count) =>{
     setStocks(prev => {
@@ -41,33 +95,7 @@ function App() {
           };
       });
     });
-    let temp = playerStocks;
-    for(let i = 0; i < stocks.length; i++){
-      if(portfolio.hasOwnProperty(stocks[i].name) && playerStocks==null){
-        temp = [{
-          label: stocks[i].name,
-          data: generateData(stocks[i].history),
-          borderColor: randomColor(),
-          backgroundColor: randomColor()
-        }];
-      }
-      if(portfolio.hasOwnProperty(stocks[i].name)){
-        let index = temp.findIndex(stock => stock['label'] == stocks[i].name);
-        if(index < 0){
-          temp = [...temp,{
-            label: stocks[i].name,
-            data: generateData(stocks[i].history),
-            borderColor: randomColor(),
-            backgroundColor: randomColor()
-          }];          
-          temp[temp.length-1].data.push(stocks[i].currentPrice);
-        }
-        else{
-          temp[index].data.push(stocks[i].currentPrice);
-        }
-      }
-    }
-    setPlayerStocks(temp);
+    updatePlayerStocks();
   }
   const [popupOpen, setPopupOpen] = useState(false);
   const [popupMode, setPopupMode] = useState("buy"); // "buy" or "sell"
@@ -104,6 +132,7 @@ function App() {
           [key]: { quantity: newQty, avgPrice: newAvg }
         };
       });
+      updatePlayerStock(selectedStock);
     }
 
     if (popupMode === "sell") {
