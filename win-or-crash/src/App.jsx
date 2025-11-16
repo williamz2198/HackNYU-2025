@@ -115,8 +115,10 @@ function App() {
           onBuy={(stock) => openPopup(stock, "buy")}
           onSell={(stock) => openPopup(stock, "sell")}
         />
-        <RandomEvent onCall={updateStocks}></RandomEvent>
-        <RestartButton></RestartButton>
+        <div className="Section">
+          <RandomEvent onCall={updateStocks}></RandomEvent>
+          <RestartButton></RestartButton>
+        </div>
       </div>
 
       
