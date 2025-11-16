@@ -97,6 +97,12 @@ function App() {
         stockValue += stock.currentPrice * portfolio[key].quantity;
       }
     }
+    if(localStorage.getItem("highScore")==null){
+      localStorage["highScore"] = 0;
+    }
+    if(localStorage.highScore < money+stockValue){
+      localStorage.highScore = money+stockValue;
+    }
     return money + stockValue;
   }
 
@@ -186,6 +192,7 @@ function App() {
            <p>Cash: ${money.toFixed(2)}</p>
            <p>Stock Value: ${(calculateTotalScore() - money).toFixed(2)}</p>
            <h2>Total Score: ${calculateTotalScore().toFixed(2)}</h2>
+           <h2>High Score: ${parseFloat(localStorage.highScore).toFixed(2)}</h2>
            <button onClick={restartGame} style={{ marginTop: "20px", padding: "10px 20px" }}>Play Again</button>
          </div>
        </div>
