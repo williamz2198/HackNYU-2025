@@ -36,7 +36,6 @@ p, h2{
   display:flex;
   justify-content: center;
 }
-
 .Section{
   flex: 1;
   background-color: white;
