@@ -153,7 +153,7 @@ export default function RandomEvent(props) {
 
     return (
         <>
-            <h2 style={{ textAlign: 'center', color: '#1a1a1a' }}>Current Event</h2>
+            <h2 style={{ textAlign: 'center'}}>Current Event</h2>
 
             <button className="buttonEvent" onClick={generateRandomEvent} >
                 Next Day
@@ -161,11 +161,13 @@ export default function RandomEvent(props) {
             
             {currentEvent ? (
                 <div>
-                    <h3 className="Text" style={{ marginTop: '0', color: currentEvent.type === 'Crisis' ? 'red' : currentEvent.type === 'Opportunity' ? 'green' : 'blue' }}>
+                    <h3 className="Text" style={{ marginTop: '0'}}>
                         <div>
-                            <div>{afterwards}</div>
+                            <div><p>{afterwards}</p></div>
                             <br/>
+                            <h2>
                             {currentEvent.title}
+                            </h2>
                             <p>
                                 {currentEvent.image_src && (
                                     <img
@@ -182,7 +184,7 @@ export default function RandomEvent(props) {
                                     />
                                 )}
                             </p>
-                                {currentEvent.description}
+                                <p>{currentEvent.description}</p>
                         </div>
                     </h3>
                 </div>
