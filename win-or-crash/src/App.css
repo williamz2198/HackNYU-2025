@@ -3,18 +3,13 @@
   text-align: center;
   background-color: rgb(41, 170, 114);
 }
-
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
+button{
+  background-color: rgb(41, 170, 114);
+  margin: 0 1vw 0 1vw;
+  color: white;
 }
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+p, h2{
+  color:rgb(41, 170, 114);
 }
 
 @keyframes logo-spin {
@@ -26,20 +21,6 @@
   }
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
-}
-
-.card {
-  padding: 2em;
-}
-
-.read-the-docs {
-  color: #888;
-}
-
 .Chart{
   background-color: white;
   align-items: center;
@@ -48,14 +29,13 @@
 }
 
 .Text{
-  background-color: black;
+  margin: 0 3vw 0 3vw;
 }
 
 .ContentBlock{
   display:flex;
   justify-content: center;
 }
-
 .Section{
   flex: 1;
   background-color: white;
@@ -65,13 +45,16 @@
 }
 
 .buttonEvent{
-  width: 100%;
-  padding: 12px;
-  font-size: 16px;
-  background-color: '#007bff';
+  width: 95%;
+  font-size: 2em;
   color: "white";
   border: 'none';
   border-Radius: '4px';
   cursor: 'pointer';
-  margin-bottom: '20px';
+  margin: 1vh 1vw 3vh 1vw;
+  padding: 1vh 1vw 1vh 1vw;
+}
+.MoneyDisplay{
+  font-size: 2em;
+  color:white;
 }
