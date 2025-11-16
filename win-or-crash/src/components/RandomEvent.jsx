@@ -45,7 +45,7 @@ export default function RandomEvent(props) {
             title: "Influencer Controversy",
             description: "A popular influencer has been caught in a scandal talking about how AI is stealing their data that has everyone talking. People are worried about their privacy online.",
             afterwards: "The controversy has blown over as quickly as it started. People have become more cautious about their online presence, but the influencer has lost a significant portion of their following.",
-            image_src: popstarImage,
+            image_src: scandalImage,
         },
         {
             id: 5,
@@ -73,19 +73,26 @@ export default function RandomEvent(props) {
 
     // Function to select a random event from the array
     const generateRandomEvent = () => {
+        let oldEventId = -1;
         if(currentEvent!=null){
             setAfterwards(currentEvent.afterwards);
+            oldEventId = currentEvent.id;
         }
-        const randomIndex = Math.floor(Math.random() * eventPrompts.length);
-        let oldEvent = currentEvent;
+        let randomIndex = Math.floor(Math.random() * eventPrompts.length);
         let newEvent = eventPrompts[randomIndex];
-        while(oldEvent==newEvent){
+        while(oldEventId==newEvent.id){
+            randomIndex = Math.floor(Math.random() * eventPrompts.length);
             newEvent = eventPrompts[randomIndex];
         }
+        
+        
         // 3. Update the state, triggering a re-render
         if(count < 24){
             setCurrentEvent(newEvent);
             props.onCall(count);
+        }
+        else{
+            setCurrentEvent(null);
         }
         //increase count by 1 
         setCount(count + 1);
