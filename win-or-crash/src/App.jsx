@@ -22,7 +22,13 @@ function App() {
     {category: "Crypto", name: "67Coin", currentPrice: 700, trend: 0.0003, volatility: 0.03, history: [700] },
     {category: "Film", name: "StanLeeTheGoat", currentPrice: 700, trend: 0.0003, volatility: 0.03, history: [700] }
   ])
-  const [playerStocks,setPlayerStocks] = useState();
+  const [playerStocks,setPlayerStocks] = useState([
+    {label: "Your stocks",
+      data:[10000],
+      borderColor: 'rgba(94, 255, 0, 1)',
+      backgroundColor: 'rgba(94, 255, 0, 1)',
+    }
+  ]);
   const generateData = (stock) =>{
     if(stock.history.length < 1){
       return [stock.currentPrice];
@@ -34,54 +40,55 @@ function App() {
     return res;
   }
   const updatePlayerStock = (stock) =>{
-    let temp = playerStocks;
-    if(playerStocks==null){
-      temp = [{
-          label: stock.name,
-          data: generateData(stock),
-          borderColor: randomColor(),
-          backgroundColor: randomColor()
-        }];
-    }
-    else{
-      temp = [...temp,{
-        label: stock.name,
-        data: generateData(stock),
-        borderColor: randomColor(),
-        backgroundColor: randomColor()
-      }];
-    }
-    temp[temp.length-1].data.push(stock.currentPrice);
-    setPlayerStocks(temp);
+    // let temp = playerStocks;
+    // if(playerStocks==null){
+    //   temp = [{
+    //       label: stock.name,
+    //       data: generateData(stock),
+    //       borderColor: randomColor(),
+    //       backgroundColor: randomColor()
+    //     }];
+    // }
+    // else{
+    //   temp = [...temp,{
+    //     label: stock.name,
+    //     data: generateData(stock),
+    //     borderColor: randomColor(),
+    //     backgroundColor: randomColor()
+    //   }];
+    // }
+    // temp[temp.length-1].data.push(stock.currentPrice);
+    // setPlayerStocks(temp);
   }
   const updatePlayerStocks = () =>{
-    console.log("update");
     let temp = playerStocks;
-    for(let i = 0; i < stocks.length; i++){
-      if(portfolio.hasOwnProperty(stocks[i].name) && playerStocks==null){
-        temp = [{
-          label: stocks[i].name,
-          data: generateData(stocks[i]),
-          borderColor: randomColor(),
-          backgroundColor: randomColor()
-        }];
-      }
-      if(portfolio.hasOwnProperty(stocks[i].name)){
-        let index = temp.findIndex(stock => stock['label'] == stocks[i].name);
-        if(index < 0){
-          temp = [...temp,{
-            label: stocks[i].name,
-            data: generateData(stocks[i]),
-            borderColor: randomColor(),
-            backgroundColor: randomColor()
-          }];        
-          temp[temp.length-1].data.push(stocks[i].currentPrice);
-        }
-        else{
-          temp[index].data.push(stocks[i].currentPrice);
-        }
-      }
-    }
+    // for(let i = 0; i < stocks.length; i++){
+    //   if(portfolio.hasOwnProperty(stocks[i].name) && playerStocks==null){
+    //     temp = [{
+    //       label: stocks[i].name,
+    //       data: generateData(stocks[i]),
+    //       borderColor: randomColor(),
+    //       backgroundColor: randomColor()
+    //     }];
+    //   }
+    //   if(portfolio.hasOwnProperty(stocks[i].name)){
+    //     let index = temp.findIndex(stock => stock['label'] == stocks[i].name);
+    //     if(index < 0){
+    //       temp = [...temp,{
+    //         label: stocks[i].name,
+    //         data: generateData(stocks[i]),
+    //         borderColor: randomColor(),
+    //         backgroundColor: randomColor()
+    //       }];        
+    //       temp[temp.length-1].data.push(stocks[i].currentPrice);
+    //     }
+    //     else{
+    //       temp[index].data.push(stocks[i].currentPrice);
+    //     }
+    //   }
+    // }
+    temp[0].data.push(money);
+    console.log(temp.data);
     setPlayerStocks(temp);
   }
   const updateStocks = (count) =>{
@@ -132,7 +139,7 @@ function App() {
           [key]: { quantity: newQty, avgPrice: newAvg }
         };
       });
-      updatePlayerStock(selectedStock);
+      // updatePlayerStock(selectedStock);
     }
 
     if (popupMode === "sell") {
