@@ -59,7 +59,7 @@ export default function RandomEvent(props) {
         {
             id: 6,
             effect: "positive",
-            stock: "Food Healthcare",
+            stock: "Food HealthCare",
             title: "Miracle Fish Discovered",
             description: "A new type of fish has been discovered that feeds families for weeks with just one catch but also extremely difficult to catch.",
             afterwards: "The miracle fish has become a staple in diets around the world. Its abundance and nutritional value have helped combat hunger and malnutrition in many communities.",
