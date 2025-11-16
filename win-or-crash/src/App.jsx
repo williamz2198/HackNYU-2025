@@ -39,54 +39,8 @@ function App() {
     }
     return res;
   }
-  const updatePlayerStock = (stock) =>{
-    // let temp = playerStocks;
-    // if(playerStocks==null){
-    //   temp = [{
-    //       label: stock.name,
-    //       data: generateData(stock),
-    //       borderColor: randomColor(),
-    //       backgroundColor: randomColor()
-    //     }];
-    // }
-    // else{
-    //   temp = [...temp,{
-    //     label: stock.name,
-    //     data: generateData(stock),
-    //     borderColor: randomColor(),
-    //     backgroundColor: randomColor()
-    //   }];
-    // }
-    // temp[temp.length-1].data.push(stock.currentPrice);
-    // setPlayerStocks(temp);
-  }
   const updatePlayerStocks = (currStocks) =>{
     let temp = playerStocks;
-    // for(let i = 0; i < stocks.length; i++){
-    //   if(portfolio.hasOwnProperty(stocks[i].name) && playerStocks==null){
-    //     temp = [{
-    //       label: stocks[i].name,
-    //       data: generateData(stocks[i]),
-    //       borderColor: randomColor(),
-    //       backgroundColor: randomColor()
-    //     }];
-    //   }
-    //   if(portfolio.hasOwnProperty(stocks[i].name)){
-    //     let index = temp.findIndex(stock => stock['label'] == stocks[i].name);
-    //     if(index < 0){
-    //       temp = [...temp,{
-    //         label: stocks[i].name,
-    //         data: generateData(stocks[i]),
-    //         borderColor: randomColor(),
-    //         backgroundColor: randomColor()
-    //       }];        
-    //       temp[temp.length-1].data.push(stocks[i].currentPrice);
-    //     }
-    //     else{
-    //       temp[index].data.push(stocks[i].currentPrice);
-    //     }
-    //   }
-    // }
     let currMoney = 0;
     for(const key in portfolio){
       currMoney+=currStocks[currStocks.findIndex(stock => stock['name'] == key)].currentPrice * portfolio[key].quantity;
@@ -223,7 +177,10 @@ function App() {
            padding: "40px",
            borderRadius: "15px",
            textAlign: "center",
-           border: "2px solid white"
+           border: "2px solid white",
+           position: "fixed",
+           left: "35%",
+           right: "35%"
          }}>
            <h1>Game Over!</h1>
            <p>Cash: ${money.toFixed(2)}</p>
@@ -244,8 +201,8 @@ function App() {
       />
       <MoneyDisplay money={money}></MoneyDisplay>
       <StockChart override={playerStocks} name={"Your stocks"}></StockChart>
+      <div style={{ padding: 8, color: "white", fontSize: "2em"}}>Day: {dayCount} / 24</div>
       <div className="ContentBlock">
-        <div style={{ padding: 8, color: "white" }}>Day: {dayCount} / 24</div>
         <StockList 
           stocks={stocks} 
           portfolio={portfolio}
