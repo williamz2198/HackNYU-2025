@@ -183,6 +183,7 @@ function App() {
       <div className="ContentBlock">
         <StockList 
           stocks={stocks} 
+          portfolio={portfolio}
           onBuy={(stock) => openPopup(stock, "buy")}
           onSell={(stock) => openPopup(stock, "sell")}
         />

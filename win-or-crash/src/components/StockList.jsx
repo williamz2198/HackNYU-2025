@@ -1,5 +1,5 @@
 import StockChart from "./StockChart"
-export default function StockList({ stocks = [], onBuy = () => {}, onSell = () => {} }) {
+export default function StockList({ stocks = [], portfolio = {}, onBuy = () => {}, onSell = () => {} }) {
     return(
     <>
         <div className="Section">
@@ -8,6 +8,7 @@ export default function StockList({ stocks = [], onBuy = () => {}, onSell = () =
                     <div className="Section">
                         <h2>{stock.name} ({stock.category})</h2>
                         <p>Price: ${stock.currentPrice.toFixed(2)}</p>
+                        <p>Shares Owned: {portfolio[stock.name]?.quantity || 0}</p>
                         <button onClick={() => onBuy(stock)}>Buy</button>
                         <button onClick={() => onSell(stock)} style={{ marginLeft: "10px" }}>Sell</button>
                     </div>
