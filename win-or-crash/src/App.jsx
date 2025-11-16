@@ -13,14 +13,13 @@ function App() {
   const [money,setMoney] = useState(10000);
   const [portfolio, setPortfolio] = useState({}); // key: stock.name -> { quantity, avgPrice }
   const [stocks, setStocks] = useState([
-    {category: "HealthCare", name: "CoronaCare", currentPrice: 150, trend: 0.0002, volatility: 0.02, history: [150] },
-    {category: "Energy", name: "GottaGoFast", currentPrice: 700, trend: 0.0003, volatility: 0.03, history: [700] },
-    {category: "Materials", name: "IronDiggers", currentPrice: 700, trend: 0.0003, volatility: 0.03, history: [700] },
-    {category: "SocialMedia", name: "InstaCom", currentPrice: 700, trend: 0.0003, volatility: 0.03, history: [700] },
-    {category: "Technology", name: "Newidia", currentPrice: 700, trend: 0.0003, volatility: 0.03, history: [700] },
-    {category: "Travel", name: "Thomas&Friends", currentPrice: 700, trend: 0.0003, volatility: 0.03, history: [700] },
-    {category: "Crypto", name: "67Coin", currentPrice: 700, trend: 0.0003, volatility: 0.03, history: [700] },
-    {category: "Film", name: "StanLeeTheGoat", currentPrice: 700, trend: 0.0003, volatility: 0.03, history: [700] }
+    {category: "HealthCare", name: "CoronaCare", currentPrice: 4000, trend: 0.0002, volatility: 0.2, history: [4000] },
+    {category: "Materials", name: "IronDiggers", currentPrice: 3500, trend: 0.0003, volatility: 0.25, history: [3500] },
+    {category: "SocialMedia", name: "InstaCom", currentPrice: 3000, trend: 0.0003, volatility: 0.17, history: [3000] },
+    {category: "Technology", name: "Newidia", currentPrice: 1000, trend: 0.0003, volatility: 0.4, history: [1000] },
+    {category: "Travel", name: "Thomas&Friends", currentPrice: 5000, trend: 0.0003, volatility: 0.1, history: [5000] },
+    {category: "Crypto", name: "67Coin", currentPrice: 10000, trend: 0.0003, volatility: 0.03, history: [10000] },
+    {category: "Film", name: "StanLeeTheGoat", currentPrice: 7500, trend: 0.0003, volatility: 0.07, history: [7500] }
   ])
   const [playerStocks,setPlayerStocks] = useState([
     {label: "Your stocks",
@@ -229,7 +228,7 @@ function App() {
            <p>Cash: ${money.toFixed(2)}</p>
            <p>Stock Value: ${(calculateTotalScore() - money).toFixed(2)}</p>
            <h2>Total Score: ${calculateTotalScore().toFixed(2)}</h2>
-           <button onClick={restartGame} style={{ marginTop: "20px", padding: "10px 20px" }}>Play Again</button>
+           <RestartButton>Play Again</RestartButton>
          </div>
        </div>
      )}
