@@ -60,7 +60,7 @@ function App() {
     // temp[temp.length-1].data.push(stock.currentPrice);
     // setPlayerStocks(temp);
   }
-  const updatePlayerStocks = () =>{
+  const updatePlayerStocks = (currStocks) =>{
     let temp = playerStocks;
     // for(let i = 0; i < stocks.length; i++){
     //   if(portfolio.hasOwnProperty(stocks[i].name) && playerStocks==null){
@@ -87,13 +87,15 @@ function App() {
     //     }
     //   }
     // }
-    temp[0].data.push(money);
-    console.log(temp.data);
+    let currMoney = money;
+    for(const key in portfolio){
+      currMoney+=currStocks[currStocks.findIndex(stock => stock['name'] == key)].currentPrice * portfolio[key].quantity;
+    }
+    temp[0].data.push(currMoney);
     setPlayerStocks(temp);
   }
   const updateStocks = (stockType,effect) =>{
-    setStocks(prev => {
-      return prev.map(stock => {
+    let newStocks = stocks.map(stock => {
           let newPrice = simulatePrice(stock.currentPrice, stock.trend, stock.volatility);
           if(stockType.includes(stock.category)){
             let multiplier = effect == "negative" ? random(0.5 , 0.8): effect == "positive" ? random(1.2, 1.5): 1;
@@ -105,8 +107,8 @@ function App() {
             history: [...stock.history, newPrice]
           };
       });
-    });
-    updatePlayerStocks();
+    setStocks(newStocks);
+    updatePlayerStocks(newStocks);
   }
   const [popupOpen, setPopupOpen] = useState(false);
   const [popupMode, setPopupMode] = useState("buy"); // "buy" or "sell"
